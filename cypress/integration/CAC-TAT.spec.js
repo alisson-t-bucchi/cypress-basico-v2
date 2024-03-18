@@ -96,7 +96,28 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('.success').should('be.visible')
     })
 
-    //exercicio extra 8 
+    //exercicio extra 8 - troca para o comando cy.contains('button', 'Enviar').click()
+
+    //Seção 4 - campos de seleção suspensa - exercicio 1
+    it('seleciona produto Youtube', function() {
+        cy.get('#product')
+        .select('youtube')
+        .should('have.value', 'youtube')
+    })
+
+    //exercicio extra 1
+    it('seleciona produto pelo seu valor', function() {
+        cy.get('#product')
+        .select('mentoria')
+        .should('have.value', 'mentoria')
+    })
+
+    //exercicio extra 2
+    it.only('seleciona produto pelo seu indice', function() {
+        cy.get('#product')
+        .select(1)
+        .should('have.value', 'blog')
+    })
 
 
 })
