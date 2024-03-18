@@ -1,14 +1,19 @@
 // CAC-TAT.spec.js created with Cypress
 // Start writing your Cypress tests below!
 // If you're unfamiliar with how Cypress works, check out the link below and learn how to write your first test: https://on.cypress.io/writing-first-test
-
 // <reference types="Cypress" /> 
+
+//import { slowCypressDown } from "cypress-slow-down"
+
+
 
 describe('Central de Atendimento ao Cliente TAT', function() {
 
     beforeEach(function() {
         cy.visit('./src/index.html')
     })
+
+    //slowCypressDown(1000)
 
     it ('verifica titulo da aplicação', function() {
         cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
@@ -113,11 +118,28 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     //exercicio extra 2
-    it.only('seleciona produto pelo seu indice', function() {
+    it('seleciona produto pelo seu indice', function() {
         cy.get('#product')
         .select(1)
         .should('have.value', 'blog')
     })
 
+    //Seção 5 - exercicio
+    it('marca o tipo de atendimento Feedback', function() {
+        cy.get('input[type="radio"][value="feedback"]')
+        .check()
+        .should('have.value', 'feedback')
+    })
+
+    it.only('marca cada tipo de atendimento', function() {
+        cy.get('input[type="radio"]')
+        .should('have.length', 3)
+        .each(function($radio) {
+            cy.wrap($radio).check()
+            cy.wrap($radio).should('be.checked')
+        })
+    })
+
 
 })
+
