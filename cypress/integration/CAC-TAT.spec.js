@@ -6,7 +6,6 @@
 //import { slowCypressDown } from "cypress-slow-down"
 
 
-
 describe('Central de Atendimento ao Cliente TAT', function() {
 
     beforeEach(function() {
@@ -53,11 +52,11 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     //exercicio extra 4
-    it('exibe mensagem de erro quando telefone é obrigatório porém não foi preenchido', function() {
+    it.only('exibe mensagem de erro quando telefone é obrigatório porém não foi preenchido', function() {
         cy.get('#firstName').type('Alisson')
         cy.get('#lastName').type('Bucchi')
         cy.get('#email').type('alisson.t.bucchi@gmail.com')
-        cy.get('#phone-checkbox').click()
+        cy.get('#phone-checkbox').check()
         cy.get('#open-text-area').type('Teste123')
         cy.contains('button', 'Enviar').click()
 
@@ -131,13 +130,23 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .should('have.value', 'feedback')
     })
 
-    it.only('marca cada tipo de atendimento', function() {
+    //Seção 5 - exercicio extra
+    it('marca cada tipo de atendimento', function() {
         cy.get('input[type="radio"]')
         .should('have.length', 3)
         .each(function($radio) {
             cy.wrap($radio).check()
             cy.wrap($radio).should('be.checked')
         })
+    })
+
+    //Seção 6 - exercicio
+    it('marca ambos checkbox e desmarca o ultimo', function() {
+        cy.get('input[type="checkbox"]')
+        .check()
+        .last()
+        .uncheck()
+        .should('not.be.checked')
     })
 
 
