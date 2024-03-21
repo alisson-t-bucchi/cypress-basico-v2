@@ -175,10 +175,10 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.fixture('example.json').as('sampleFile')
         cy.get('input[type="file"]')
         .selectFile('@sampleFile')
-
-
     })
 
 
+    it.only('verifica a politica de privacidade abre em outra aba sem a necessidade de clicar', function() {
+        cy.get('#privacy a').should('have.attr', 'target', '_blank')
+    })
 })
-
