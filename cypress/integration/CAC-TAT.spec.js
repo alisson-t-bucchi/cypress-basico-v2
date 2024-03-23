@@ -104,7 +104,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     //Seção 4 - campos de seleção suspensa - exercicio 1
     it('seleciona produto Youtube', function() {
-        cy.get('#product')
+        cy.get('product')
         .select('youtube')
         .should('have.value', 'youtube')
     })
@@ -135,7 +135,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('input[type="radio"]')
         .should('have.length', 3)
         .each(function($radio) {
-            cy.wrap($radio).check()
+            cy.wrap($radi).check()
             cy.wrap($radio).should('be.checked')
         })
     })
@@ -183,7 +183,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('acessa a pagina da politica de privacidade removendo o target', function() {
-        cy.get('#privacy a')
+        cy.get('#privacy ')
         .invoke('removeAttr', 'target')
         .click()
 
